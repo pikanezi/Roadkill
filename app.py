@@ -26,15 +26,6 @@ class IndexHandler(webapp2.RequestHandler):
             "selected": 0
         }))
 
-
-class UploadHandler(webapp2.RequestHandler):
-    def post(self):
-        csv_file = self.request.get('csv_file')
-        print(csv_file)
-        self.response.out.write('caca')
-
-
 app = webapp2.WSGIApplication([
     ('/', IndexHandler),
-    ('/upload', UploadHandler),
 ], debug=True)

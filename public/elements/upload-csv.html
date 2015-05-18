@@ -1,21 +1,37 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-
-<dom-module id="upload-csv">
+<link rel="import" href="../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/file-input/file-input.html">
+<link rel="import" href="../bower_components/ajax-file-input/ajax-file-input.html">
+<polymer-element name="upload-csv">
 
     <template>
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <div>
-                <label>Upload csv file</label>
-                <input type="file">
-            </div>
-            <button type="submit">Upload</button>
-        </form>
+
+        <style>
+            paper-button {
+                background-color: #2196F3;
+                color: #ffffff;
+            }
+        </style>
+
+        <ajax-file-input url="/upload" on-success="{{ handleResponse }}"></ajax-file-input>
+
+        <!--<file-input on-change="{{ onFileSelected }}">-->
+            <!--<paper-button raised>-->
+                <!--<core-icon icon="file-upload"></core-icon> Upload file-->
+            <!--</paper-button>-->
+        <!--</file-input>-->
 
     </template>
 
     <script>
         Polymer({
-            is: 'upload-csv'
+            ready: function() {
+            },
+
+            handleResponse: function(event) {
+                console.log(event.detail.valid);
+            }
         });
     </script>
-</dom-module>
+</polymer-element>
